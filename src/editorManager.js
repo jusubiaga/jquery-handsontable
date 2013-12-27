@@ -149,7 +149,9 @@
                 break;
 
               case keyCodes.F2: /* F2 */
-                that.openEditor();
+                var selected = instance.getSelected();
+                var value = instance.PluginHooks.execute('beforeEdit', selected[0], selected[1]);
+                that.openEditor(value);
                 event.preventDefault(); //prevent Opera from opening Go to Page dialog
                 break;
 

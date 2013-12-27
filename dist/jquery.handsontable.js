@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Wed Nov 27 2013 14:18:10 GMT+0100 (CET)
+ * Date: Fri Dec 27 2013 10:43:36 GMT-0300 (Argentina Standard Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -3309,7 +3309,9 @@ Handsontable.TableView.prototype.maximumVisibleElementHeight = function (top) {
                 break;
 
               case keyCodes.F2: /* F2 */
-                that.openEditor();
+                var selected = instance.getSelected();
+                var value = instance.PluginHooks.execute('beforeEdit', selected[0], selected[1]);
+                that.openEditor(value);
                 event.preventDefault(); //prevent Opera from opening Go to Page dialog
                 break;
 
@@ -5475,6 +5477,7 @@ Handsontable.PluginHookClass = (function () {
       beforeAutofill: [],
       beforeKeyDown: [],
       beforeColumnSort: [],
+      beforeEdit: [],
 
       afterInit : [],
       afterLoadData : [],
