@@ -46,6 +46,8 @@ Handsontable.PluginHookClass = (function () {
       afterOnCellMouseDown: [],
       afterOnCellCornerMouseDown: [],
 
+      onCellTextChange: [],
+
       // Modifiers
       modifyCol: []
     }

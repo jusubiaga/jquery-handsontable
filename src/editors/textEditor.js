@@ -85,6 +85,7 @@
     this.TEXTAREA.focus();
     this.wtDom.setCaretPosition(this.TEXTAREA, this.TEXTAREA.value.length);
 
+    this.activateOnChangeEvent();
     this.instance.addHook('beforeKeyDown', onBeforeKeyDown);
   };
 
@@ -95,12 +96,26 @@
       this.instance.listen(); //don't refocus the table if user focused some cell outside of HT on purpose
     }
 
+    this.deactivateOnChangeEvent();
     this.instance.removeHook('beforeKeyDown', onBeforeKeyDown);
   };
 
   TextEditor.prototype.focus = function(){
     this.TEXTAREA.focus();
   };
+
+    TextEditor.prototype.activateOnChangeEvent = function(){
+        if(this.instance.PluginHooks.hooks.onCellTextChange.length !== 0){
+            var that = this;
+            this.$textarea.on('input', function(){
+                that.instance.PluginHooks.run("onCellTextChange", this.value);
+            });
+        }
+    };
+
+    TextEditor.prototype.deactivateOnChangeEvent = function(){
+        this.$textarea.off('input');
+    };
 
   TextEditor.prototype.createElements = function () {
     this.$body = $(document.body);
