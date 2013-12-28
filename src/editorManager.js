@@ -40,6 +40,11 @@
         instance.populateFromArray(areaStart.row, areaStart.col, inputArray, areaEnd.row, areaEnd.col, 'paste', priv.settings.pasteMode);
       };
 
+      function executeBeforeEdit(){
+          var selected = instance.getSelected();
+          return instance.PluginHooks.execute('beforeEdit', selected[0], selected[1]);
+      }
+
       function onKeyDown(event) {
 
         if (!instance.isListening()) {
@@ -149,8 +154,7 @@
                 break;
 
               case keyCodes.F2: /* F2 */
-                var selected = instance.getSelected();
-                var value = instance.PluginHooks.execute('beforeEdit', selected[0], selected[1]);
+                var value = executeBeforeEdit();
                 that.openEditor(value);
                 event.preventDefault(); //prevent Opera from opening Go to Page dialog
                 break;
@@ -233,8 +237,8 @@
       $document.on('keydown.handsontable.' + instance.guid, onKeyDown);
 
       function onDblClick() {
-//        that.instance.destroyEditor();
-        that.openEditor();
+        var value = executeBeforeEdit();
+        that.openEditor(value);
       }
 
       instance.view.wt.update('onCellDblClick', onDblClick);
