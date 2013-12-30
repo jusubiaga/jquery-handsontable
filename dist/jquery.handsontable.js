@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri Dec 27 2013 14:44:41 GMT-0300 (Argentina Standard Time)
+ * Date: Mon Dec 30 2013 16:33:06 GMT-0300 (Argentina Standard Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -3614,7 +3614,9 @@ Handsontable.helper.isMetaKey = function (keyCode) {
     keyCodes.PAGE_UP,
     keyCodes.ENTER,
     keyCodes.ESCAPE,
-    keyCodes.SHIFT
+    keyCodes.SHIFT,
+    keyCodes.ALT
+
   ];
 
   return metaKeys.indexOf(keyCode) != -1;
@@ -3856,6 +3858,7 @@ Handsontable.helper.keyCode = {
   PERIOD: 190,
   SPACE: 32,
   SHIFT: 16,
+  ALT: 18,
   TAB: 9,
   ARROW_RIGHT: 39,
   ARROW_LEFT: 37,

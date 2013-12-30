@@ -146,6 +146,10 @@ var handsontableKeyTriggerFactory = function (type) {
           ev.keyCode = 32;
           break;
 
+        case 'alt':
+          ev.keyCode = 18;
+          break;
+
         default:
           throw new Error('Unrecognised key name: ' + key);
       }
